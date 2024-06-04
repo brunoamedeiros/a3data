@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: a3data-challenge
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: a3data-challenge
+  template:
+    metadata:
+      labels:
+        app: a3data-challenge
+    spec:
+      containers:
+        - name: a3data-challenge
+          image: brunoamedeiros/a3data-challenge:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DOMAIN
+              value: 'localhost'
+            - name: ENVIRONMENT
+              value: 'local'
+            - name: PROJECT_NAME
+              value: 'A3Data Challenge'
+            - name: STACK_NAME
+              value: 'a3data-challenge'
+            - name: BACKEND_CORS_ORIGINS
+              value: 'http://localhost,http://localhost:5173,https://localhost,https://localhost:5173,http://localhost.tiangolo.com'
+            - name: SECRET_KEY
+              value: 'admin'
+            - name: FIRST_SUPERUSER
+              value: 'admin@example.com'
+            - name: FIRST_SUPERUSER_PASSWORD
+              value: 'admin'
+            - name: USERS_OPEN_REGISTRATION
+              value: 'False'
+            - name: POSTGRES_SERVER
+              value: 'db'
+            - name: POSTGRES_PORT
+              value: '5432'
+            - name: POSTGRES_DB
+              value: 'synthea'
+            - name: POSTGRES_USER
+              value: 'admin'
+            - name: POSTGRES_PASSWORD
+              value: 'pass'

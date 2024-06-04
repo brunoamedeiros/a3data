@@ -1,0 +1,72 @@
+[tool.poetry]
+name = "a3data"
+version = "0.1.0"
+description = "A3Data Technical Challenge"
+authors = ["Bruno Medeiros <bruno.am19@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.111.0"
+uvicorn = "^0.30.0"
+SQLAlchemy = "^2.0.30"
+pydantic = "^2.7.2"
+psycopg = {extras = ["binary"], version = "^3.1.13"}
+alembic = "^1.13.1"
+databases = "^0.9.0"
+starlette = "^0.37.2"
+pydantic-settings = "^2.2.1"
+python-multipart = "^0.0.7"
+email-validator = "^2.1.0.post1"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+tenacity = "^8.2.3"
+
+gunicorn = "^22.0.0"
+httpx = "^0.25.1"
+# Pin bcrypt until passlib supports the latest
+bcrypt = "4.0.1"
+pyjwt = "^2.8.0"
+pytest-mock = "^3.14.0"
+elasticsearch = "^8.13.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.1"
+mypy = "^1.8.0"
+ruff = "^0.2.2"
+pre-commit = "^3.6.2"
+types-passlib = "^1.7.7.20240106"
+coverage = "^7.4.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+strict = true
+exclude = ["venv", ".venv", "alembic"]
+
+[tool.ruff]
+target-version = "py310"
+exclude = ["alembic"]
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "UP",  # pyupgrade
+    "ARG001", # unused arguments in functions
+]
+ignore = [
+    "E501",  # line too long, handled by black
+    "B008",  # do not perform function calls in argument defaults
+    "W191",  # indentation contains tabs
+    "B904",  # Allow raising exceptions without from e, for HTTPException
+]
+
+[tool.ruff.lint.pyupgrade]
+# Preserve types, even if a file imports `from __future__ import annotations`.
+keep-runtime-typing = true
