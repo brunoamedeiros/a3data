@@ -60,8 +60,8 @@ The project uses the following technologies:
 1. **Clone the repository**
 
    ```sh
-   git clone [repository-url]
-   cd [repository-name]
+   git clone https://github.com/brunoamedeiros/a3data
+   cd a3data
    ```
 
 2. **Set up environment variables**
